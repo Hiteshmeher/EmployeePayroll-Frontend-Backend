@@ -1,0 +1,62 @@
+<body>
+    <!-- Header Part with logo-->
+    <header class="header-content header">
+        <div class="logo-content">
+            <img [src]="logoUrl" alt="logo">
+            <div>
+                <span class="emp-text">EMPLOYEE</span><br> 
+                <span class="emp-text emp-payroll">PAYROLL</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="header-content">
+            <div class="emp-detail-text">
+                Employee Details 
+            </div>
+            <a routerLink="form" class="add-button">
+                <img [src]="addUrl" alt="">Add User
+            </a>
+        </div>
+        <!-- Table -->
+        <div class="table-main">
+            <table id="display" class="table"> 
+                <!-- Table Headings -->
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>department</th>
+                    <th>salary</th>
+                    <th>Start Date</th>
+                    <th>Actions</th>
+                </tr>
+                
+                <tr *ngFor="let employee of employeeDetails">
+                    <td>
+                        <img class="profile" [src]="employee.profilePic" alt="Profile Pic">
+                    </td>
+                    <td>{{employee.employeeId}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.gender}}</td>
+                    <td>
+                        <div class="dept-label" *ngFor="let department of employee.department">
+                            {{department}}
+                        </div>
+                    </td>
+                    <td>{{employee.salary | currency:'INR'}}</td>
+                    <td>{{employee.startDate | date: 'dd MMM yyyy'}}</td>
+                    <td>
+                        <img id={{employee.employeeId}} [src]="deleteUrl"alt="delete" (click)="remove(employee.employeeId)">
+                        
+                        <img id={{employee.employeeId}} [src]="editUrl" (click)="update(employee.employeeId)" alt="edit">   
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+    </div> 
+</body>

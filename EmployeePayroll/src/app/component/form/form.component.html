@@ -1,0 +1,126 @@
+<body>
+    <!-- Header Part with logo-->
+    <header class="header-content header">
+        <div class="logo-content">
+            <img [src]="logoUrl" alt="logo">
+            <div>
+                <span class="emp-text">EMPLOYEE</span><br> 
+                <span class="emp-text emp-payroll">PAYROLL</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Employee Payroll Form -->
+    <div class="form-content">
+        <form  class="form" action="#">
+            <div class="form-head">Employee Payroll Form</div>
+
+            <!-- Name -->
+            <div class="row-content">
+                <label class="label text" for="name">Name </label>
+                <input class="input"  type="text" id="name" [(ngModel)]=employee.name name="name" placeholder="Your Name" required/>
+            </div>
+            <!-- Profile Pic -->
+            <div class="row-content">
+                <label class="label text" for="profile">Profile image</label>
+                <div class="profile-radio-content">
+                    <label>
+                        <input type="radio"  id="profile1" [(ngModel)]=employee.profilePic name="profile" value="./assets/profile-images/Ellipse -1.png" required>
+                        <img class="profile" id='image1' [src]="image1Url">
+                    </label>
+                    <label>
+                        <input type="radio"  id="profile2" [(ngModel)]=employee.profilePic name="profile" value="./assets/profile-images/Ellipse -2.png" required>
+                        <img class="profile" id='image2' [src]="image2Url">
+                    </label>
+                    <label>
+                        <input type="radio"  id="profile3" [(ngModel)]=employee.profilePic name="profile" value="./assets/profile-images/Ellipse -3.png" required>
+                        <img class="profile" id='image3' [src]="image3Url">
+                    </label>
+                    <label>
+                        <input type="radio"  id="profile4" [(ngModel)]=employee.profilePic name="profile" value="./assets/profile-images/Ellipse -4.png" required>
+                        <img class="profile" id='image4' [src]="image4Url">
+                    </label>
+                </div>
+            </div>
+            <!-- Gender -->
+            <div class="row-content">
+                <label class="label text" for="gender">Gender</label>
+                <div>
+                    <input type="radio"  name="gender" id="male" [(ngModel)]=employee.gender value="male">
+                    <label class="text" for="male">Male</label>
+                    <input type="radio"  name="gender" id="female" [(ngModel)]=employee.gender value="female">
+                    <label class="text" for="female">Female</label>
+                </div>
+            </div>
+            <!-- Department -->
+            <div class="row-content">
+                <label class="label text" for="department">Department</label>
+                <div *ngFor="let departName of depart2,let i = index ">
+                    <input type="checkbox" name="department" id="department" [value]="this.employee.department[i]" (change)="checkBoxChange(departName)" (ngModel)="departName" 
+                    [ngModelOptions]="{standalone: true}" ngDefaultControl> {{departName}}
+                </div>
+            </div>
+
+            <!-- <div class="row-content">
+                <label class="label text" for="department">Department</label>
+                <div>
+                    <input class="checkbox"  type="checkbox" name="hr" id="hr" [(ngModel)]=employee.department value="HR">
+                    <label for="hr">HR</label>
+                
+                    <input class="checkbox"  type="checkbox" name="sales" id="sales" [(ngModel)]=employee.department value="Sales">
+                    <label for="sales">Sales</label>
+                
+                    <input class="checkbox"  type="checkbox" name="finance" id="finance" [(ngModel)]=employee.department value="finance">
+                    <label for="finance">Finance</label>
+                
+                    <input class="checkbox"  type="checkbox" name="engineer" id="engineer" [(ngModel)]=employee.department value="engineer">
+                    <label for="engineer">Engineer</label>
+                
+                    <input class="checkbox"  type="checkbox" name="others" id="others" [(ngModel)]=employee.department value="Others">
+                    <label for="others">Others</label>
+                </div>
+            </div> -->
+
+            <!-- Salary -->
+            <div class="row-content">
+                <label class="label text" for="salary">Choose your salary</label>
+                <select name="salary"  id="salary" [(ngModel)]=employee.salary>
+                    <option value="" disabled selected>Select Salary</option>
+                    <option value="10000">10000</option>
+                    <option value="20000">20000</option>
+                    <option value="30000">30000</option>
+                    <option value="40000">40000</option>
+                    <option value="50000">50000</option>
+                    <option value="60000">60000</option>
+                    <option value="70000">70000</option>
+                    <option value="80000">80000</option>
+                    <option value="90000">90000</option>
+                    <option value="100000">100000</option>
+                </select>
+            </div>
+
+            <!-- Start date -->
+            <div class="row-content">
+                <label class="label text" for="startDate"> Start Date </label>
+                <input type="date" name="startDate" id="startdate">
+            </div>
+
+            
+            <!-- Notes -->
+            <div class="row-content">
+                <label class="label text" for="notes">Notes</label>
+                <textarea id="notes"  class="input" [(ngModel)]=employee.note name="Notes" placeholder="" style="height: 100px;"></textarea>
+            </div>
+            <!-- Buttons -->
+            <div class="buttonParent">
+                <a routerLink="" class="resetButton button cancelButton">Cancel</a>
+                <div class="submit-reset">
+                    <button type="submit" class="button submitButton" id="submitButton" (click)="onSubmit()">Submit</button>
+                    <button type="submit"  class="button submitButton" id="submitButton" *ngIf="employeeId!=null" (click)="updateEmpData()">Update</button>
+
+                    <button type="reset" class="resetButton button">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
